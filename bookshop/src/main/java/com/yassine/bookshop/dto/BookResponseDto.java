@@ -13,6 +13,5 @@ public class BookResponseDto {
     private Integer stock;
     private String description;
     private String categoryName;
-}
     private Long categoryId;
 }

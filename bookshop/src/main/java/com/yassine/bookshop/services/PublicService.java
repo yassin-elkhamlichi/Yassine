@@ -4,6 +4,7 @@ import com.yassine.bookshop.dto.BookResponseDto;
 import com.yassine.bookshop.dto.CategoryResponseDto;
 import com.yassine.bookshop.entities.Book;
 import com.yassine.bookshop.entities.Category;
+import com.yassine.bookshop.mappers.BookMapper;
 import com.yassine.bookshop.repositories.BookRepository;
 import com.yassine.bookshop.repositories.CategoryRepository;
 import lombok.AllArgsConstructor;
@@ -23,6 +24,7 @@ public class PublicService {
 
     private final BookRepository bookRepository;
     private final CategoryRepository categoryRepository;
+    private final BookMapper bookMapper;
 
     // ── Categories ──────────────────────────────────────────────────────────
 
@@ -38,7 +40,7 @@ public class PublicService {
     public Page<BookResponseDto> getBooks(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         return bookRepository.findAll(pageable)
-                .map(this::mapBook);
+                .map(bookMapper::toResponseDto);
     }
 
     public BookResponseDto getBookById(Long id) {
