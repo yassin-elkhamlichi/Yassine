@@ -17,11 +17,10 @@ public class CartItemId implements Serializable {
     private static final long serialVersionUID = 9078722002899055735L;
     @NotNull
     @Column(name = "user_id", nullable = false)
-    private Integer userId;
+    private Long userId;
 
     @NotNull
     @Column(name = "book_id", nullable = false)
-    private Integer bookId;
-
+    private Long bookId;
 
 }
