@@ -30,7 +30,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> auth(
             @Valid @RequestBody AuthUserDto authUserDto , HttpServletRequest request
-    ){
+    ) throws Exception {
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -61,9 +61,9 @@ public class AuthController {
                     .body(new JwtResponseDto(tokenAccess));
         }
         catch(Exception e){
-            System.out.println(e.getMessage());
+            throw new Exception(e);
         }
-        return  null;
+
     }
 
     @PostMapping("refresh")
