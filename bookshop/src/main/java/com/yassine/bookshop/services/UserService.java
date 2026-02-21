@@ -21,7 +21,7 @@ public class UserService {
     public UserResponse addUser(UserRegisterDto userRegisterDto) {
         User user = userMapper.toEntity(userRegisterDto);
         user.setRole(Role.USER);
-        user.setPasswordHash(passwordEncoder.encode(userRegisterDto.getPassword())); // ✅ set manually
+        user.setPassword_hash(passwordEncoder.encode(userRegisterDto.getPassword()));
         user = userRepository.save(user);
         return userMapper.toDto(user);
     }
