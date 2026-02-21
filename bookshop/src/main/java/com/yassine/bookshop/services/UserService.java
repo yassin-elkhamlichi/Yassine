@@ -4,6 +4,7 @@ import com.yassine.bookshop.dto.UserRegisterDto;
 import com.yassine.bookshop.dto.UserResponse;
 import com.yassine.bookshop.entities.Role;
 import com.yassine.bookshop.entities.User;
+import com.yassine.bookshop.exceptions.UserExistException;
 import com.yassine.bookshop.mappers.UserMapper;
 import com.yassine.bookshop.repositories.UserRepository;
 import lombok.AllArgsConstructor;
@@ -18,6 +19,9 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     public UserResponse addUser(UserRegisterDto userRegisterDto) {
+        if (userRepository.findByEmail(userRegisterDto.getEmail()) != null) {
+            throw new UserExistException();
+        }
         User user = userMapper.toEntity(userRegisterDto);
         user.setRole(Role.USER);
         user.setPasswordHash(passwordEncoder.encode(userRegisterDto.getPassword()));
