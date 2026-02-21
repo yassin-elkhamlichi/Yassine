@@ -9,8 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "Categories", schema = "bookshop", uniqueConstraints = {@UniqueConstraint(name = "name",
-        columnNames = {"name"})})
+@Table(name = "categories")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @Entity
-@Table(name = "CartItems", schema = "bookshop")
+@Table(name = "cartItems")
 public class CartItem {
     @EmbeddedId
     private CartItemId id;
