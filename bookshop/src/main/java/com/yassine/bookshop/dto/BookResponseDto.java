@@ -12,5 +12,6 @@ public class BookResponseDto {
     private BigDecimal price;
     private Integer stock;
     private String description;
+    private String categoryName;
     private Long categoryId;
 }

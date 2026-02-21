@@ -50,12 +50,15 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
 
                         // Public endpoints
+                        .requestMatchers("/public/**").permitAll()
                         .requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/user/sign-up").permitAll()
                         .requestMatchers("/errors").permitAll()
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
 
                         // Admin endpoints
+                        .requestMatchers(HttpMethod.POST, "/admin/books").hasRole("ADMIN")
+                        .requestMatchers("/admin/books/**").hasRole("ADMIN")
                         .requestMatchers("/admin/**").hasRole("ADMIN")
 
                         // Authenticated user endpoints
