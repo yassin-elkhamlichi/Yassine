@@ -1,4 +1,6 @@
 package com.yassine.bookshop.entities;
 
-public class thisFileWillRemoveed {
+public enum Role {
+    ADMIN,
+    USER
 }

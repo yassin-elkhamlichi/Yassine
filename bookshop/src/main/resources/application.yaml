@@ -10,3 +10,8 @@ spring:
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+app:
+  jwt:
+    secret: ${JWT_SECRET}
+    expiration: ${JWT_ACCESS_EXPIRATION}
+    tokenRefreshExpirationTime: ${JWT_REFRESH_EXPIRATION}

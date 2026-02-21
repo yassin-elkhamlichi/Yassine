@@ -14,21 +14,21 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @Entity
-@Table(name = "Books", schema = "bookshop")
+@Table(name = "books", schema = "bookshop")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Size(max = 255)
     @NotNull
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Transient
     @Size(max = 255)
     @NotNull
+    @Column(name = "author", nullable = false)
     private String author;
 
     @NotNull
