@@ -27,7 +27,8 @@ public class ValidationFilter extends OncePerRequestFilter {
     private final List<String> PUBLIC_ENDPOINTS = List.of(
             "/auth/login",
             "/user/sign-up",
-            "/errors"
+            "/errors",
+            "/public"
     );
 
     @Override
