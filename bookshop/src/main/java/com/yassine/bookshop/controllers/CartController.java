@@ -3,6 +3,7 @@ package com.yassine.bookshop.controllers;
 import com.yassine.bookshop.dto.CartResponse;
 import com.yassine.bookshop.services.CartService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +15,8 @@ public class CartController {
     private final CartService cartService;
 
     @GetMapping
-    public CartResponse getCart(Authentication authentication) {
-        return cartService.getUserCart(authentication.getName());
+    public ResponseEntity<CartResponse> getCart(Authentication authentication) {
+        return ResponseEntity.ok(cartService.getUserCart(authentication.getName()));
     }
 
     @PostMapping("/items")

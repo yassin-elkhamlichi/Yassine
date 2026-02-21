@@ -1,7 +1,9 @@
 package com.yassine.bookshop.services;
 
 import com.yassine.bookshop.dto.CartResponse;
+import com.yassine.bookshop.dto.ItemDto;
 import com.yassine.bookshop.entities.*;
+import com.yassine.bookshop.mappers.CartMapper;
 import com.yassine.bookshop.repositories.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,7 @@ public class CartService {
     private final CartItemRepository cartItemRepository;
     private final BookRepository bookRepository;
     private final UserRepository userRepository;
+    private final CartMapper cartMapper;
 
     // ==============================
     // GET USER CART WITH TOTAL
@@ -27,8 +30,10 @@ public class CartService {
             throw new RuntimeException("User not found");
         }
 
-        List<CartItem> items =
-                cartItemRepository.findByUser_Id(user.getId());
+        List<ItemDto> items = cartItemRepository.findByUser_Id(user.getId()).
+                stream()
+                .map(cartMapper::toDto)
+                .toList();
 
         BigDecimal total = items.stream()
                 .map(item ->
@@ -38,7 +43,7 @@ public class CartService {
                 )
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-        return new CartResponse(items, total);
+        return new CartResponse(items, total, user.getId());
     }
 
     // ==============================
