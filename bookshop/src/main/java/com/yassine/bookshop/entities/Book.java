@@ -26,9 +26,9 @@ public class Book {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Transient
     @Size(max = 255)
     @NotNull
+    @Column(name = "author", nullable = false)
     private String author;
 
     @NotNull

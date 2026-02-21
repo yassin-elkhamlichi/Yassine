@@ -2,6 +2,7 @@ package com.yassine.bookshop.controllers;
 
 import com.yassine.bookshop.dto.UserResponse;
 import com.yassine.bookshop.dto.UserRegisterDto;
+import com.yassine.bookshop.services.AuthService;
 import com.yassine.bookshop.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

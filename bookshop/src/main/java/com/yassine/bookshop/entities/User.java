@@ -24,8 +24,8 @@ public class User {
 
     @Size(max = 255)
     @NotNull
-    @Column(name = "password_hash", unique = true, nullable = false)
-    private String password_hash;
+    @Column(name = "password_hash", nullable = false)
+    private String passwordHash;
 
     @NotNull
     @Enumerated(EnumType.STRING)

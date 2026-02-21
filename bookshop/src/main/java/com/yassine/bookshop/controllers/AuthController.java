@@ -28,18 +28,21 @@ public class AuthController {
     private final UserRepository userRepository;
 
     @PostMapping("/login")
-    public ResponseEntity<JwtResponseDto> auth(
+    public ResponseEntity<?> auth(
             @Valid @RequestBody AuthUserDto authUserDto , HttpServletRequest request
     ){
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             authUserDto.getEmail(),
-                            authUserDto.getPasswordHash()
+                            authUserDto.getPassword()
                     )
             );
 
             User user = userRepository.findByEmail(authUserDto.getEmail());
+            if (user == null)
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                        Map.of("error", "user not exists"));
             String tokenAccess = jwtService.generateAccessToken(user, request);
             String tokenRefresh = jwtService.generateRefreshToken(user, request);
 
@@ -58,8 +61,9 @@ public class AuthController {
                     .body(new JwtResponseDto(tokenAccess));
         }
         catch(Exception e){
-            throw new RuntimeException();
+            System.out.println(e.getMessage());
         }
+        return  null;
     }
 
     @PostMapping("refresh")

@@ -1,0 +1,26 @@
+# A single-stage build that includes the full JDK and all source code.
+# This is useful for development and debugging but creates a larger image.
+
+# Use an official Maven image with Java 17 (full JDK)
+FROM maven:3.9-eclipse-temurin-17
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the pom.xml first to leverage Docker's layer caching.
+# This way, Maven dependencies are only re-downloaded if pom.xml changes.
+COPY pom.xml .
+RUN mvn dependency:go-offline
+
+# Copy the rest of your application's source code
+COPY src ./src
+
+# Package the application, creating the executable JAR. We skip tests during the build.
+RUN mvn package -DskipTests
+
+# Expose the port your application runs on (default for Spring Boot is 8080)
+EXPOSE 8080
+
+# The command to run your application when the container starts
+# We use a shell to find and run the JAR file in the target directory.
+ENTRYPOINT ["sh", "-c", "java -jar target/*.jar"]

@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class UserService {
-
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
@@ -21,7 +20,7 @@ public class UserService {
     public UserResponse addUser(UserRegisterDto userRegisterDto) {
         User user = userMapper.toEntity(userRegisterDto);
         user.setRole(Role.USER);
-        user.setPassword_hash(passwordEncoder.encode(userRegisterDto.getPassword()));
+        user.setPasswordHash(passwordEncoder.encode(userRegisterDto.getPassword()));
         user = userRepository.save(user);
         return userMapper.toDto(user);
     }

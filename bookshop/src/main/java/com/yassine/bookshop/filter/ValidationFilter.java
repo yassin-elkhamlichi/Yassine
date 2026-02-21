@@ -24,6 +24,20 @@ import java.util.List;
 public class ValidationFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
 
+    private final List<String> PUBLIC_ENDPOINTS = List.of(
+            "/auth/login",
+            "/user/sign-up",
+            "/errors"
+    );
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        String path = request.getRequestURI();
+        return PUBLIC_ENDPOINTS.stream().anyMatch(path::startsWith)
+                || path.startsWith("/swagger-ui/")
+                || path.startsWith("/v3/api-docs/");
+    }
+
     @Override
     protected void doFilterInternal(HttpServletRequest request,  HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
             var authHeader = request.getHeader("Authorization");

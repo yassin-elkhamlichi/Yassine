@@ -9,5 +9,5 @@ public class AuthUserDto {
     @Email
     String email;
     @Size(min = 8, message = "Password must be at least 8 characters")
-    String passwordHash;
+    String password;
 }
