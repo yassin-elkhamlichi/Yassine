@@ -1,10 +1,3 @@
-Malheureusement, je n'ai pas pu accéder au contenu de votre dépôt GitHub (`https://github.com/yassin-elkhamlichi/Yassine`) car il semble être privé ou non indexé. Cependant, en me basant strictement sur le document **"ÉPREUVE PRATIQUE (1 journée) - Spring Boot + DevOps"** que vous avez fourni, j'ai généré le fichier `README.md` parfait qui répond exactement aux exigences strictes de votre examen pour valider vos points DevOps.
-
-Puisque le nom de votre dépôt est `Yassine`, cela signifie que votre "chef de projet" est **Yassine**. Voici le code Markdown complet que vous pouvez copier-coller dans votre fichier `README.md` à la racine de votre projet.
-
----
-
-```markdown
 # 📚 BookShop API - Spring Boot & DevOps
 
 Ce projet est une API REST de boutique de livres en ligne développée avec Spring Boot, sécurisée par JWT, et déployée automatiquement sur un serveur Linux via Docker et GitHub Actions. 
