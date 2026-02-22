@@ -65,4 +65,4 @@ jobs:
       - name: Health check
         run: |
           sleep 30
-          curl --fail "http://${{ secrets.SERVER_HOST }}:8087/api/public/books?page=0&size=5" || exit 1
+          curl --fail "http://${{ secrets.SERVER_HOST }}:8087/actuator/health" || exit 1

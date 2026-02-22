@@ -15,3 +15,12 @@ app:
     secret: ${JWT_SECRET:TXlCb29rU2hvcFN1cGVyU2VjcmV0S2V5MjAyNFhZWjEyM2dpdCBjaGVja291dCBtYWluIQ==}
     expiration: ${JWT_ACCESS_EXPIRATION:86400000}
     tokenRefreshExpirationTime: ${JWT_REFRESH_EXPIRATION:604800000}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
