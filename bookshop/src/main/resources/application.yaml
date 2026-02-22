@@ -12,6 +12,6 @@ spring:
     url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
 app:
   jwt:
-    secret: ${JWT_SECRET}
-    expiration: ${JWT_ACCESS_EXPIRATION}
-    tokenRefreshExpirationTime: ${JWT_REFRESH_EXPIRATION}
+    secret: ${JWT_SECRET:TXlCb29rU2hvcFN1cGVyU2VjcmV0S2V5MjAyNFhZWjEyM2dpdCBjaGVja291dCBtYWluIQ==}
+    expiration: ${JWT_ACCESS_EXPIRATION:86400000}
+    tokenRefreshExpirationTime: ${JWT_REFRESH_EXPIRATION:604800000}

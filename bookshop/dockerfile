@@ -4,7 +4,7 @@ WORKDIR /app
 COPY bookshop/pom.xml .
 RUN mvn dependency:go-offline -B
 COPY bookshop/src ./src
-RUN mvn package -DskipTests -B
+RUN mvn clean package -DskipTests -B
 
 # Etape 2 : Image finale
 FROM eclipse-temurin:17-jre
