@@ -45,8 +45,7 @@ jobs:
           script: |
             cd /home/${{ secrets.SERVER_USER }}/bookshop
             git pull origin main
-
-            cat > bookshop/.env << 'EOF'
+            cat > bookshop/.env <<EOF
             DB_HOST=db
             DB_PORT=3306
             DB_NAME=${{ secrets.DB_NAME }}
@@ -57,9 +56,10 @@ jobs:
             JWT_REFRESH_EXPIRATION=${{ secrets.JWT_REFRESH_EXPIRATION }}
             DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}
             EOF
-
             docker compose -f bookshop/docker-compose.yml down --remove-orphans
             docker compose -f bookshop/docker-compose.yml pull
+            docker compose -f bookshop/docker-compose.yml up -d db
+            sleep 60
             docker compose -f bookshop/docker-compose.yml up -d --remove-orphans
 
       - name: Health check
