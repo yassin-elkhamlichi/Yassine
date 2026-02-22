@@ -55,7 +55,8 @@ public class SecurityConfig {
                         .requestMatchers("/user/sign-up").permitAll()
                         .requestMatchers("/errors").permitAll()
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
-                        .requestMatchers("/actuator/health").permitAll()
+                        .requestMatchers("/actuator/**").permitAll()
+
 
                         // Admin endpoints
                         .requestMatchers(HttpMethod.POST, "/admin/books").hasRole("ADMIN")
