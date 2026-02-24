@@ -5,7 +5,7 @@ Ce projet est une API REST de boutique de livres en ligne développée avec Spri
 ## 👥 Équipe & Organisation
 
 - **Chef de projet** : Yassine
-- Membre 2 : Aya mghari
+- Membre 2 : Aya EL mghari
 - Membre 3 : Khalid el ouankhari
 - Membre 4 : Ambdulghaffar ahamadi
 - Membre 5 : hayat el fartassi
